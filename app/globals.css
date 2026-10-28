@@ -1,26 +1,163 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  body {
+    background-color: #f8fafc; /* bg-slate-50 karşılığı */
+    color: #0f172a;            /* text-slate-900 karşılığı */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  ::selection {
+    background-color: #2563eb; /* bg-blue-600 */
+    color: #ffffff;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* --------------------------------------------------------------------------
+ * Makale içeriği tipografi sistemi (prose + kurumsal marka uyumu)
+ * ------------------------------------------------------------------------ */
+@layer components {
+  .prose-blog h2 {
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    scroll-margin-top: 7rem;
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    color: #0f172a;
+  }
+
+  .prose-blog h3 {
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    scroll-margin-top: 7rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: #0f172a;
+  }
+
+  .prose-blog p {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    line-height: 1.85;
+    color: #475569;
+  }
+
+  .prose-blog strong {
+    font-weight: 600;
+    color: #0f172a;
+  }
+
+  .prose-blog a {
+    font-weight: 500;
+    color: #2563eb;
+    text-decoration-line: underline;
+    text-decoration-color: #93c5fd;
+    text-underline-offset: 2px;
+    transition-property: color, text-decoration-color;
+    transition-duration: 150ms;
+  }
+
+  .prose-blog a:hover {
+    color: #1d4ed8;
+    text-decoration-color: #3b82f6;
+  }
+
+  .prose-blog ul {
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .prose-blog ul > li {
+    position: relative;
+    padding-left: 1.5rem;
+    line-height: 1.625;
+    color: #475569;
+    margin-bottom: 0.625rem;
+  }
+
+  .prose-blog ul > li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.65rem;
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: 9999px;
+    background-color: #3b82f6;
+  }
+
+  .prose-blog ol {
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+  }
+
+  .prose-blog ol > li {
+    padding-left: 0.25rem;
+    line-height: 1.625;
+    color: #475569;
+    margin-bottom: 0.625rem;
+  }
+
+  .prose-blog blockquote {
+    margin-top: 1.75rem;
+    margin-bottom: 1.75rem;
+    border-radius: 0 0.75rem 0.75rem 0;
+    border-left-width: 4px;
+    border-left-color: #2563eb;
+    background-color: rgba(239, 246, 255, 0.6);
+    padding: 1rem 1rem 1rem 1.25rem;
+    font-style: normal;
+  }
+
+  .prose-blog blockquote p {
+    font-weight: 500;
+    line-height: 1.625;
+    color: #334155;
+    margin: 0;
+  }
+
+  .prose-blog table {
+    margin-top: 1.75rem;
+    margin-bottom: 1.75rem;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 0.75rem;
+    border: 1px solid #e2e8f0;
+    text-align: left;
+    font-size: 0.875rem;
+  }
+
+  .prose-blog thead {
+    background-color: #0f172a;
+  }
+
+  .prose-blog thead th {
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    color: #ffffff;
+  }
+
+  .prose-blog tbody td {
+    border-top: 1px solid #e2e8f0;
+    padding: 0.75rem 1rem;
+    color: #475569;
+  }
+
+  .prose-blog tbody tr:nth-child(even) {
+    background-color: #f8fafc;
+  }
+
+  .prose-blog hr {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border-color: #e2e8f0;
+  }
 }
