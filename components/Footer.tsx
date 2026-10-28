@@ -3,7 +3,6 @@ import { ArrowRight, Zap } from 'lucide-react';
 import { CATEGORIES } from '@/data/categories';
 import { ctaUrl, MAIN_SITE_URL, SOCIAL_LINKS } from '@/config/site';
 
-/** SVG tabanlı tip güvenli sosyal ikon bileşenleri */
 function LinkedinIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
@@ -63,6 +62,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-slate-900 text-slate-300">
+      {/* Banner CTA */}
       <div className="border-b border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 py-8 sm:px-6 md:flex-row lg:px-8">
           <div>
@@ -88,8 +88,9 @@ export default function Footer() {
 
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 gap-10 md:grid-cols-4 lg:grid-cols-5">
+          {/* Logo & Tanım */}
           <div className="col-span-2 md:col-span-4 lg:col-span-2">
-            <Link href="/" className="inline-flex items-center gap-2.5">
+            <Link href="/" className="inline-flex items-center gap-2.5" aria-label="Entegrematik Blog">
               <span className="flex size-9 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-blue-500">
                 <Zap className="size-5 text-white" aria-hidden="true" />
               </span>
@@ -105,7 +106,7 @@ export default function Footer() {
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-slate-400">
               Pazaryerleri, e-fatura ve ön muhasebeyi tek panelde birleştiren e-ticaret
               otomasyon platformu. Uzman ekibimizden operasyon rehberleri, mevzuat
-              güncellemeleri ve ürün haberleri.
+              güncellemeleri ve e-ticaret ipuçları.
             </p>
             <div className="mt-6 flex items-center gap-3">
               {SOCIAL_ICONS.map(({ label, href, Icon }) => (
@@ -123,16 +124,18 @@ export default function Footer() {
             </div>
           </div>
 
-          <nav aria-label="Blog kategorileri">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-white">
-              Kategoriler
-            </h3>
+          {/* SEO İletim Odaklı Blog Kategorileri */}
+          <nav aria-label="E-Ticaret Blog Kategorileri">
+            <h2 className="text-sm font-bold uppercase tracking-wider text-white">
+              Blog Rehberleri
+            </h2>
             <ul className="mt-4 space-y-2.5">
               {CATEGORIES.map((category) => (
                 <li key={category.slug}>
                   <Link
                     href={`/${category.slug}`}
                     className="text-sm text-slate-400 transition hover:text-blue-400"
+                    title={`${category.name} rehberleri ve makaleleri`}
                   >
                     {category.name}
                   </Link>
@@ -141,10 +144,11 @@ export default function Footer() {
             </ul>
           </nav>
 
+          {/* Kurumsal Linkler */}
           <nav aria-label="Kurumsal bağlantılar">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-white">
+            <h2 className="text-sm font-bold uppercase tracking-wider text-white">
               Kurumsal
-            </h3>
+            </h2>
             <ul className="mt-4 space-y-2.5">
               {CORPORATE_LINKS.map((link) => (
                 <li key={link.href}>
@@ -159,10 +163,11 @@ export default function Footer() {
             </ul>
           </nav>
 
-          <nav aria-label="Destek & Yasal bağlantılar">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-white">
+          {/* Destek ve Yasal */}
+          <nav aria-label="Destek ve Yasal Bağlantılar">
+            <h2 className="text-sm font-bold uppercase tracking-wider text-white">
               Destek & Yasal
-            </h3>
+            </h2>
             <ul className="mt-4 space-y-2.5">
               {LEGAL_LINKS.map((link) => (
                 <li key={link.href}>
@@ -179,6 +184,7 @@ export default function Footer() {
         </div>
       </div>
 
+      {/* Telif & Ek Bağlantı */}
       <div className="border-t border-white/10 pb-20 sm:pb-16">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 text-xs text-slate-500 sm:flex-row sm:px-6 lg:px-8">
           <p>
@@ -187,19 +193,19 @@ export default function Footer() {
               href={MAIN_SITE_URL}
               className="font-semibold text-slate-400 transition hover:text-blue-400"
             >
-              Entegrematik
+              Entegrematik E-Ticaret Otomasyonu
             </a>{' '}
             — Tüm hakları saklıdır.
           </p>
           <p>
-            Bu blog{' '}
+            Bu platform bir{' '}
             <a
               href={MAIN_SITE_URL}
               className="font-medium text-slate-400 underline decoration-slate-600 underline-offset-2 transition hover:text-blue-400"
             >
               entegrematik.com
             </a>{' '}
-            iştirakidir.
+            yayınıdır.
           </p>
         </div>
       </div>

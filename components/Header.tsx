@@ -11,7 +11,7 @@ function navLinkClasses(isActive: boolean): string {
   return [
     'rounded-lg px-3 py-2 text-sm font-medium transition-colors',
     isActive
-      ? 'bg-blue-50 text-blue-700'
+      ? 'bg-blue-50 text-blue-700 font-semibold'
       : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900',
   ].join(' ');
 }
@@ -20,7 +20,6 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
 
-  // Route değişiminde mobil menüyü otomatik kapat
   useEffect(() => {
     setIsMenuOpen(false);
   }, [pathname]);
@@ -31,11 +30,12 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-        {/* Logo — kurumsal kimlik */}
+        {/* Logo — Ana Site ve Blog Bütünlüğü */}
         <Link
           href="/"
           className="flex shrink-0 items-center gap-2.5"
-          aria-label="Entegrematik Blog ana sayfası"
+          aria-label="Entegrematik Blog — Ana Sayfa"
+          title="Entegrematik Blog Ana Sayfası"
         >
           <span className="flex size-9 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-blue-500 shadow-md shadow-blue-600/25">
             <Zap className="size-5 text-white" aria-hidden="true" />
@@ -50,8 +50,8 @@ export default function Header() {
           </span>
         </Link>
 
-        {/* Desktop menü */}
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Ana menü">
+        {/* Desktop Menü */}
+        <nav className="hidden items-center gap-1 lg:flex" aria-label="Ana Navigasyon">
           <Link href="/" className={navLinkClasses(pathname === '/')}>
             Ana Sayfa
           </Link>
@@ -60,24 +60,26 @@ export default function Header() {
               key={category.slug}
               href={`/${category.slug}`}
               className={navLinkClasses(isCategoryActive(category.slug))}
+              title={`${category.name} Rehberleri ve İçerikleri`}
             >
               {category.shortName}
             </Link>
           ))}
         </nav>
 
-        {/* Sağ aksiyonlar */}
+        {/* Sağ Aksiyonlar & Ana Siteden Bloga Bağlantı */}
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* Ana site köprüsü */}
           <a
             href={MAIN_SITE_URL}
+            target="_blank"
+            rel="noopener"
             className="hidden items-center gap-1 text-sm font-semibold text-slate-600 transition hover:text-blue-600 xl:flex"
+            title="Entegrematik E-Ticaret Otomasyonu Ana Sayfası"
           >
             entegrematik.com
             <ArrowUpRight className="size-4" aria-hidden="true" />
           </a>
 
-          {/* Birincil CTA */}
           <a
             href={ctaUrl('blog-header')}
             className="hidden rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-md shadow-blue-600/25 transition hover:bg-blue-700 sm:block"
@@ -85,7 +87,6 @@ export default function Header() {
             14 Gün Ücretsiz Deneyin
           </a>
 
-          {/* Mobil menü tetikleyici */}
           <button
             type="button"
             onClick={() => setIsMenuOpen((open) => !open)}
@@ -99,18 +100,18 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobil menü */}
+      {/* Mobil Menü */}
       {isMenuOpen && (
         <div id="mobile-menu" className="border-t border-slate-200 bg-white lg:hidden">
           <nav
             className="mx-auto max-w-7xl space-y-1 px-4 py-4 sm:px-6"
-            aria-label="Mobil menü"
+            aria-label="Mobil Navigasyon"
           >
             <Link
               href="/"
               className={`block rounded-lg px-3 py-2.5 text-sm font-medium ${
                 pathname === '/'
-                  ? 'bg-blue-50 text-blue-700'
+                  ? 'bg-blue-50 text-blue-700 font-semibold'
                   : 'text-slate-700 hover:bg-slate-50'
               }`}
             >
@@ -123,7 +124,7 @@ export default function Header() {
                 href={`/${category.slug}`}
                 className={`block rounded-lg px-3 py-2.5 text-sm font-medium ${
                   isCategoryActive(category.slug)
-                    ? 'bg-blue-50 text-blue-700'
+                    ? 'bg-blue-50 text-blue-700 font-semibold'
                     : 'text-slate-700 hover:bg-slate-50'
                 }`}
               >
@@ -134,6 +135,8 @@ export default function Header() {
             <div className="!mt-4 flex flex-col gap-2 border-t border-slate-100 pt-4">
               <a
                 href={MAIN_SITE_URL}
+                target="_blank"
+                rel="noopener"
                 className="inline-flex items-center justify-center gap-1 rounded-lg border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-blue-300 hover:text-blue-600"
               >
                 entegrematik.com
