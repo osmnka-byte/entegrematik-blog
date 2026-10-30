@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  output: "export", // Cloudflare Pages statik export için zorunludur
+  trailingSlash: true, // Statik sayfa yönlendirmelerinde klasör yapısını korur
   reactStrictMode: true,
   poweredByHeader: false,
 
@@ -16,6 +18,7 @@ const nextConfig: NextConfig = {
   },
 
   images: {
+    unoptimized: true, // Statik export (output: 'export') olduğu için Next.js görsel optimizasyonu devre dışı bırakılır
     remotePatterns: [
       {
         protocol: "https",
@@ -26,25 +29,8 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
   },
 
-  async headers() {
-    return [
-      {
-        source: "/:path*",
-        headers: [
-          { key: "X-Content-Type-Options", value: "nosniff" },
-          { key: "X-Frame-Options", value: "SAMEORIGIN" },
-          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
-        ],
-      },
-    ];
-  },
-
   async redirects() {
     return [
-      // Blog içi kategori yapılarına organik geçiş sağlandığı için 
-      // pazaryeri/e-fatura dış yönlendirmeleri kaldırıldı.
-      // Sadece kurumsal ve genel yönlendirmeler bırakıldı:
       { source: "/fiyatlar", destination: "/#fiyatlandirma", permanent: true },
       { source: "/fiyatlandirma-ve-paketler", destination: "/#fiyatlandirma", permanent: true },
       { source: "/paketler", destination: "/#fiyatlandirma", permanent: true },

@@ -35,19 +35,19 @@ function YoutubeIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
+// Hatalı/olmayan linkler temizlendi, ana site yapılarına (anchor ve doğru route) bağlandı
 const CORPORATE_LINKS: { label: string; href: string }[] = [
   { label: 'Ana Sayfa', href: MAIN_SITE_URL },
-  { label: 'Özellikler', href: `${MAIN_SITE_URL}/ozellikler` },
-  { label: 'Fiyatlandırma', href: `${MAIN_SITE_URL}/fiyatlandirma` },
-  { label: 'Müşteri Hikayeleri', href: `${MAIN_SITE_URL}/musteri-hikayeleri` },
-  { label: 'İletişim', href: `${MAIN_SITE_URL}/iletisim` },
+  { label: 'Özellikler', href: `${MAIN_SITE_URL}/#ozellikler` },
+  { label: 'Entegrasyonlar', href: `${MAIN_SITE_URL}/#entegrasyonlar` },
+  { label: 'Fiyatlandırma', href: `${MAIN_SITE_URL}/#fiyatlandirma` },
 ];
 
 const LEGAL_LINKS: { label: string; href: string }[] = [
-  { label: 'Yardım Merkezi', href: `${MAIN_SITE_URL}/yardim` },
-  { label: 'KVKK Aydınlatma Metni', href: `${MAIN_SITE_URL}/kvkk` },
-  { label: 'Gizlilik Politikası', href: `${MAIN_SITE_URL}/gizlilik-politikasi` },
+  { label: 'Sıkça Sorulan Sorular', href: `${MAIN_SITE_URL}/#sss` },
+  { label: 'Gizlilik Politikası', href: `${MAIN_SITE_URL}/gizlilik` },
   { label: 'Kullanım Koşulları', href: `${MAIN_SITE_URL}/kullanim-kosullari` },
+  { label: 'KVKK Aydınlatma Metni', href: `${MAIN_SITE_URL}/kvkk` },
 ];
 
 const SOCIAL_ICONS = [
